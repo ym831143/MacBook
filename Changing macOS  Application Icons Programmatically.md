@@ -45,7 +45,13 @@ cp ~/.custom-icons/atom.icns /Applications/Atom.app/Contents/Resources/atom.icns
 以上代码可以替换图标，但您必须重新启动计算机才能使更改生效......或者？
 
 ## 强制重新加载
-默认情况下，应用程序图标会在启动时加载到缓存中。有几种重新加载图标缓存的方法，但实际上有个更容易的方法——只需`touch`该应用程序即可：
+默认情况下，应用程序图标会在启动时加载到缓存中。有您可以用以下方法重新加载图标缓存：
+
+```
+sudo rm -rfv /Library/Caches/com.apple.iconservices.store; sudo find /private/var/folders/ \( -name com.apple.dock.iconcache -or -name com.apple.iconservices \) -exec rm -rfv {} \; ; sleep 3; killall Dock; killall Finder
+```
+
+但实际上有个更容易的方法——只需`touch`该应用程序即可：
 
 ```
 touch /Applications/Atom.app
